@@ -1,7 +1,7 @@
 # Monorepo
 
 - [ ] *Qingjuan Dan* **(TODO: Change this heading to your name, because your github name is often not your real name)**
-- [ ] *[Phonetic spelling](https://dictionary.cambridge.org/us/help/phonetics.html) of your name here* **(TODO: Change this)**
+- [ ] *['chingdʒuan dan](https://dictionary.cambridge.org/us/help/phonetics.html) of your name here* **(TODO: Change this)**
 
 ## Important Documents 
 
