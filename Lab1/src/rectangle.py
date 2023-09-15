@@ -9,7 +9,7 @@ class Shape(ABC):
 	def __init__(self, width, height):
 		self._width = width
 		self._height = height
-		
+
 	@abstractmethod
 	def set_values(self, width, height):
 		pass
