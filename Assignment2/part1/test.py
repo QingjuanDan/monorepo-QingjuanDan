@@ -1,54 +1,45 @@
 import unittest
-import jsonapi
 import datetime
+from jsonapi import CustomJSONEncoder, CustomJSONDecoder, dumps, loads
 
-# class TestCustomJSONEncoder(unittest.TestCase):
-#     def test_encode_complex_object(self):
-#         # Test encoding a complex object
-#         complex_obj = {
-#             'range_obj': range(1, 6),
-#             'timestamp': datetime.datetime.now(),
-#         }
-#         json_str = jsonapi.dumps(complex_obj)
-#         decoded_obj = jsonapi.loads(json_str)
-#         self.assertEqual(complex_obj, decoded_obj)
-#
-#     def test_encode_range_object(self):
-#         # Test encoding a range object
-#         range_obj = range(10, 21)
-#         json_str = jsonapi.dumps(range_obj)
-#         decoded_obj = jsonapi.loads(json_str)
-#         self.assertEqual(list(range_obj), decoded_obj)
+
+class TestCustomJSONEncoder(unittest.TestCase):
+    def test_encode_datetime(self):
+        dt = datetime.datetime(2023, 9, 21, 12, 34, 56)
+        encoded = dumps(dt)
+        self.assertIn(dt.isoformat(), encoded)
+
+    def test_encode_range(self):
+        r = range(1, 5)
+        encoded = dumps(r)
+        self.assertIn('[1, 2, 3, 4]', encoded)
+
 
 class TestCustomJSONDecoder(unittest.TestCase):
-    def test_decode_complex_object(self):
-        # Test decoding a complex object
-        json_str = '{"range_obj": [1, 2, 3, 4, 5], "timestamp": "2023-09-21T12:34:56.789123"}'
-        expected_obj = {
-            'range_obj': range(1, 5),
-            'timestamp': datetime.datetime(2023, 9, 21, 12, 34, 56, 789123),
+    def test_decode_datetime(self):
+        dt_str = '{"__datetime__": true, "value": "2023-09-21T12:34:56"}'
+        decoded = loads(dt_str)
+        self.assertEqual(decoded, datetime.datetime(2023, 9, 21, 12, 34, 56))
+
+    def test_decode_range(self):
+        range_str = '{"__range__": true, "start": 1, "stop": 5}'
+        decoded = loads(range_str)
+        self.assertEqual(decoded, range(1, 5))
+
+
+class TestIntegration(unittest.TestCase):
+    def test_integration(self):
+        original = {
+            "datetime": datetime.datetime(2023, 9, 21, 12, 34, 56),
+            "range": range(1, 5)
         }
-        decoded_obj = jsonapi.loads(json_str)
-        self.assertEqual(expected_obj, decoded_obj)
+        encoded = dumps(original)  # Ensure this is encoding the datetime and range properly
+        decoded = loads(encoded)  # Ensure this is decoding the datetime and range properly
 
-    def test_decode_range_object(self):
-        # Test decoding a range object
-        json_str = '[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]'
-        expected_obj = range(10, 21)
-        decoded_obj = jsonapi.loads(json_str)
-        self.assertEqual(list(expected_obj), decoded_obj)
+        # Now check the equality of the original and decoded objects
+        self.assertEqual(original['datetime'], decoded['datetime'])
+        self.assertEqual(list(original['range']), list(decoded['range']))
 
-# class TestCustomJSONFunctions(unittest.TestCase):
-#     def test_dumps_and_loads(self):
-#         # Test dumps and loads functions with complex data
-#         complex_obj = {
-#             'range_obj': range(1, 6),
-#             'timestamp': datetime.datetime.now(),
-#         }
-#         json_str = jsonapi.dumps(complex_obj)
-#         decoded_obj = jsonapi.loads(json_str)
-#         self.assertEqual(complex_obj, decoded_obj)
 
 if __name__ == '__main__':
     unittest.main()
-

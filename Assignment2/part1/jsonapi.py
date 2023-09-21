@@ -3,30 +3,31 @@ import datetime
 
 class CustomJSONEncoder(json.JSONEncoder):
     def default(self, obj):
-        #Customize JSON encoding for specific types
         if isinstance(obj, datetime.datetime):
             return obj.isoformat()
+        elif isinstance(obj, range):
+            return list(obj)  # Encode range as a list
         return super().default(obj)
+
+
+from dateutil import parser
 
 class CustomJSONDecoder(json.JSONDecoder):
     def decode(self, s, **kwargs):
-        def decode_range(obj):
-            print(obj)
-            if "range_obj" in obj:
-                start, stop, step = obj['range_obj'][0], obj['range_obj'][len(obj['range_obj'])-1], 1
-            return {
-                    'range_obj': range(start, stop, step),
-                    'timestamp': datetime.datetime(2023, 9, 21, 12, 34, 56, 789123),
-                }
+        def decode_object(obj):
+            if "__datetime__" in obj:
+                return parser.isoparse(obj["value"])
+            elif "__range__" in obj:
+                return range(obj["start"], obj["stop"])
+            return obj
 
-        decoded_obj = json.loads(s, object_hook=decode_range, **kwargs)
+        decoded_obj = json.loads(s, object_hook=decode_object, **kwargs)
         return decoded_obj
 
-# def dumps(obj, **kwargs):
-#     return json.dumps(obj, cls=CustomJSONEncoder, **kwargs)
+
+
+def dumps(obj, **kwargs):
+    return json.dumps(obj, cls=CustomJSONEncoder, **kwargs)
 
 def loads(s, **kwargs):
     return json.loads(s, cls=CustomJSONDecoder, **kwargs)
-
-
-
