@@ -68,7 +68,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-	```
+```
 
 1. Are singleton's in Python thread safe? Why or why not?
 
