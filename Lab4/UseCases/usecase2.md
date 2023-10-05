@@ -6,32 +6,35 @@
 
 <hr>
 
-**Use Case**: *use-case-title*
+**Use Case**: *Change drawing color by selecting different color keys*
 
-**Primary Actor**: *primary-actor*
+**Primary Actor**: *user*
 
-**Goal in Context**: *the aim of the primary-actor in a particular circumstance*
+**Goal in Context**: *To allow the user to select different drawing colors using number keys*
 
-**Preconditions**: *conditions that must be true before the scenario may play out*
+**Preconditions**: *The drawing application is running and responsive*
 
-**Trigger**: *an action or actions that initiate the scenario*
+**Trigger**: *The user pressing number keys 1 through 8*
   
-**Scenario**: *an enumerated list of steps describing the actions and interactions of the primary actor with the system*
+**Scenario**: *1. When the user presses a number key from 1 to 8 to choose a color (as described in the use case), it signals a request to change the drawing color.
+2. The application recognizes the key press and understands it as a color change request.
+3. The application then updates the current drawing color to match the one associated with the pressed number key.
+4. With the new color selected, the user can begin drawing on the canvas.
+5. If the user wants to change the color again, they can follow the same steps by pressing another number key from 1 to 8.*
  
-**Exceptions**: *errors or faults that may occur during the scenario. Should include remedy/corrective action taken by the primary actor*
+**Exceptions**: *The application may not recognize keypress events due to system lag. In such cases, the user should try pressing the key again*
 
-**Priority**: *relative importance of this use case compared to other use cases*
+**Priority**: *Medium*
 
-**When available**: *the targeted release that covers this use case*
+**When available**: *First release*
 
-**Channel to actor**: *the means through which the primary actor and the system communicate*
+**Channel to actor**: *Keyboard*
 
-**Secondary Actor**: *any other actors – people or systems – that may be involved in the scenario*
+**Secondary Actor**: *N/A*
 
-**Channels to Secondary Actors**: *the means through which any secondary actors may interact with the system or other actors*
+**Channels to Secondary Actors**: *N/A*
 
-**Open Issues**: *notes, concerns, or other materials*
-
+**Open Issues**: *N/A*
 <hr>
 
 
