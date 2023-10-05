@@ -6,32 +6,31 @@
 
 <hr>
 
-**Use Case**: *use-case-title*
+**Use Case**: Specification of Window and Canvas Size
 
-**Primary Actor**: *primary-actor*
+**Primary Actor**: user
 
-**Goal in Context**: *the aim of the primary-actor in a particular circumstance*
+**Goal in Context**: *To ensure the drawing canvas is 600 pixels wide and 400 pixels high*
 
-**Preconditions**: *conditions that must be true before the scenario may play out*
+**Preconditions**: *The drawing application must be initialized*
 
-**Trigger**: *an action or actions that initiate the scenario*
+**Trigger**: *User starts launching the drawing program*
   
-**Scenario**: *an enumerated list of steps describing the actions and interactions of the primary actor with the system*
- 
-**Exceptions**: *errors or faults that may occur during the scenario. Should include remedy/corrective action taken by the primary actor*
+**Scenario**: *1. The user launches the drawing application 2. The system presents a canvas of size 600x400 pixels to the user.*
 
-**Priority**: *relative importance of this use case compared to other use cases*
+**Exceptions**: *If the application encounters non-numeric characters, invalid dimensions (e.g., negative values), or system errors during initialization, the system should display an error message, prompting the user to correct their input or restart the application.*
 
-**When available**: *the targeted release that covers this use case*
+**Priority**: *Medium*
 
-**Channel to actor**: *the means through which the primary actor and the system communicate*
+**When available**: *First release*
 
-**Secondary Actor**: *any other actors – people or systems – that may be involved in the scenario*
+**Channel to actor**: *The primary actor interacts with the system through a graphical user interface (GUI) displayed on the monitor.*
 
-**Channels to Secondary Actors**: *the means through which any secondary actors may interact with the system or other actors*
+**Secondary Actor**: *N/A*
 
-**Open Issues**: *notes, concerns, or other materials*
+**Channels to Secondary Actors**: *N/A*
 
+**Open Issues**: *N/A*
 <hr>
 
 
